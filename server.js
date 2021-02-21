@@ -22,6 +22,7 @@ app.use(
         ? process.env.DATABASE_URL
         : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
     }),
+    ssl: true,
     secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
