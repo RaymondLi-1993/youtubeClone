@@ -8,6 +8,9 @@ const connectionString = `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.
 
 const pool = new Pool({
   connectionString: isProduction ? keys.dataBaseUrl : connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = { pool };
