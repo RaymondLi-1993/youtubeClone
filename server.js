@@ -17,7 +17,7 @@ app.use(
   session({
     store: new postGresqlStore({
       conString:
-        process.NODE_ENV === `production`
+        process.env.NODE_ENV === `production`
           ? process.env.DATABASE_URL
           : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
     }),
