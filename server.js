@@ -19,13 +19,13 @@ app.use(
   session({
     store: new postGresqlStore({
       conString: isProduction
-        ? keys.dataBaseUrl
+        ? process.env.DATABASE_URL
         : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
     }),
     secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
+    cookie: { secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 },
   })
 );
 app.use(flash());
