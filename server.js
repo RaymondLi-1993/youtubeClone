@@ -13,21 +13,17 @@ initializePassport(passport);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-d;
 app.use(
   session({
     store: new postGresqlStore({
-      conString:
-        process.env.NODE_ENV === `production`
-          ? keys.dataBaseUrl
-          : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
+      conString: process.NODE_ENV === `production` ?
+      process.env.DATABASE_URL
+      `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
     }),
     secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-    },
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
   })
 );
 app.use(flash());
@@ -36,6 +32,7 @@ app.use(passport.session());
 app.use(usersRouter);
 
 const path = require("path");
+const { dataBaseUrl } = require("./config/prod");
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
   app.use(express.static("client/build"));
