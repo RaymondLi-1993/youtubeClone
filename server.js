@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: new postGresqlStore({
-      conString: isProduction
-        ? process.env.DATABASE_URL
-        : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
+      conObject: {
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
+      },
     }),
-    ssl: true,
     secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -48,3 +48,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Alright you got it! running on ${PORT}`);
 });
+
+//: `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
