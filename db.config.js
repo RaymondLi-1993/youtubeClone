@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === `production`;
 const connectionString = `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`;
 
 const pool = new Pool({
-  connectionString: isProduction ? keys.dataBaseUrl : connectionString,
+  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
   ssl: {
     rejectUnauthorized: false,
   },
