@@ -1,5 +1,5 @@
 require("dotenv").config();
-const keys = require(`./config/dev`);
+const keys = require(`./config/keys`);
 
 const { Pool } = require("pg");
 
