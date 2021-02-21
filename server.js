@@ -10,16 +10,17 @@ const flash = require(`connect-flash`);
 const initializePassport = require("./passportConfig");
 initializePassport(passport);
 
+const isProduction = process.env.NODE_ENV === `production`;
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: new postGresqlStore({
-      conString:
-        process.env.NODE_ENV === `production`
-          ? keys.dataBaseUrl
-          : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
+      conString: isProduction
+        ? keys.dataBaseUrl
+        : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
     }),
     secret: keys.SESSION_SECRET,
     resave: false,
