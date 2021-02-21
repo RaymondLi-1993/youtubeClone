@@ -13,10 +13,14 @@ initializePassport(passport);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+d;
 app.use(
   session({
     store: new postGresqlStore({
-      conString: process.env.DATABASE_URL,
+      conString:
+        process.env.NODE_ENV === `production`
+          ? keys.dataBaseUrl
+          : `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
     }),
     secret: keys.SESSION_SECRET,
     resave: false,
