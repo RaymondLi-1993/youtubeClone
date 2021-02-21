@@ -32,7 +32,6 @@ app.use(passport.session());
 app.use(usersRouter);
 
 const path = require("path");
-const { dataBaseUrl } = require("./config/prod");
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
   app.use(express.static("client/build"));
