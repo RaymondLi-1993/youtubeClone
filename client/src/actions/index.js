@@ -36,6 +36,7 @@ export const signOut = () => async dispatch => {
 export const createUser = data => async dispatch => {
   try {
     const response = await Axios.post(`/api/create`, data);
+    console.log(response.data.err);
     if (response.data.err <= 0) {
       const newUser = await Axios.post(`/api/auth`, data);
       await dispatch({ type: SIGN_IN, payload: newUser.data });

@@ -17,7 +17,7 @@ app.use(
   session({
     store: new postGresqlStore({
       conObject: {
-        connectionString: process.env.DATABASE_URL,
+        connectionString: keys.dataBaseUrl,
         ssl: {
           require: true,
           rejectUnauthorized: false,

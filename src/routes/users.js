@@ -39,6 +39,7 @@ router.get(`/api/failure`, (req, res) => {
 
 router.post(`/api/create`, async (req, res) => {
   try {
+    console.log(req.body);
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     await pool.query(`INSERT INTO users(username, password) VALUES($1, $2)`, [
