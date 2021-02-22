@@ -49,6 +49,7 @@ const initialize = passport => {
       if (err) {
         throw err;
       }
+      console.log(res.rows[0]);
       return done(null, res.rows[0]);
     });
   });
