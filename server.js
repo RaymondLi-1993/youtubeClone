@@ -10,8 +10,6 @@ const flash = require(`connect-flash`);
 const initializePassport = require("./passportConfig");
 initializePassport(passport);
 
-const isProduction = process.env.NODE_ENV === `production`;
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
