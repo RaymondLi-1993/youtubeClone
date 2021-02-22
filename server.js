@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: new postGresqlStore({
+      //dev use below
+      //conString: `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_DATABASE}`,
       conObject: {
         connectionString: keys.dataBaseUrl,
         ssl: {

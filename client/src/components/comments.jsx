@@ -91,10 +91,10 @@ const Comments = () => {
   }
 
   return (
-    <div className="w-2/3 mb-6 p-4 container">
+    <div className="w-7/12 mb-6 p-4 container lg:ml-12">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col w-full h-2/5 items-start mt-8"
+        className="flex flex-col w-full h-2/5 items-start mb-12 mx-4 border-2 border-gray-300"
       >
         <input
           ref={register}
