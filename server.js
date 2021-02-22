@@ -7,9 +7,6 @@ const postGresqlStore = require("connect-pg-simple")(session);
 const usersRouter = require(`./src/routes/users`);
 const flash = require(`connect-flash`);
 
-const initializePassport = require("./passportConfig");
-initializePassport(passport);
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +29,9 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+const initializePassport = require("./passportConfig");
+initializePassport(passport);
+
 app.use(flash());
 app.use(usersRouter);
 
