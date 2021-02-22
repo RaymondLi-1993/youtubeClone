@@ -10,11 +10,7 @@ import {
 
 export const signIn = data => async dispatch => {
   try {
-    const response = await Axios.post(
-      `/api/auth`,
-      { withCredentials: true },
-      data
-    );
+    const response = await Axios.post(`/api/auth`, data);
     console.log(response.data);
     if (response.data.errors) {
       dispatch({ type: ERROR_MESSAGE, payload: response.data });
@@ -40,11 +36,7 @@ export const signOut = () => async dispatch => {
 
 export const createUser = data => async dispatch => {
   try {
-    const response = await Axios.post(
-      `/api/create`,
-      { withCredentials: true },
-      data
-    );
+    const response = await Axios.post(`/api/create`, data);
     console.log(response.data.err);
     if (response.data.err <= 0) {
       const newUser = await Axios.post(`/api/auth`, data);
