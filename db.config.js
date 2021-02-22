@@ -10,7 +10,7 @@ const connectionString = `postgres://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.
 const pool = new Pool({
   connectionString: isProduction ? keys.DATABASE_URL : connectionString,
   ssl: {
-    sslmode: isProduction ? "require" : null,
+    require: true,
     rejectUnauthorized: false,
   },
 });
