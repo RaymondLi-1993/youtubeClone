@@ -23,6 +23,7 @@ router.post(
 );
 
 router.get(`/api/success`, (req, res) => {
+  console.log(req.user);
   const { username, id } = req.user;
   res.send({ id, username });
 });
